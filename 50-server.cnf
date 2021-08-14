@@ -32,25 +32,23 @@ bind-address            = 127.0.0.1
 #
 # * Fine Tuning
 #
-key_buffer_size                = 196M
-max_allowed_packet             = 196M
-thread_stack                   = 196K
-thread_cache_size              = 196K
-table_open_cache               = 10000
-table_definition_cache         = 8192
+key_buffer_size                = 32M     # If still using MyISAM use 196M instead
+max_allowed_packet             = 80M     # Near 1% of max RAM
+table_open_cache               = 2048    # For a total of 2K tables (which is huge)
+table_definition_cache         = 2048    # For a total of 2K tables (which is huge)
 
 innodb_file_per_table          = 1
 innodb_flush_log_at_trx_commit = 2
-innodb_flush_method            = O_DIRECT
-innodb_buffer_pool_size        = 4G
-innodb_buffer_pool_instances   = 4
+innodb_flush_method            = O_DIRECT 
+innodb_buffer_pool_size        = 5G
+innodb_buffer_pool_instances   = 5
 innodb_log_file_size           = 1G
 innodb_read_io_threads         = 8
 innodb_write_io_threads        = 8
-innodb_io_capacity             = 2000
+innodb_io_capacity             = 2000     # If using HDD, switch to 1000 instead
 
-tmp_table_size                 = 256M
-max_heap_table_size            = 256M
+tmp_table_size                 = 80M      # Near 1% of max RAM
+max_heap_table_size            = 80M      # Near 1% of max RAM
 
 sort_buffer_size               = 2M
 read_buffer_size               = 256K
@@ -62,7 +60,7 @@ query_cache_type               = 0
 query_cache_limit              = 128M
 
 myisam-recover-options         = BACKUP
-max_connections                = 500
+max_connections                = 200
 
 #
 # * Logging and Replication
